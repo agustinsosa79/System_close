@@ -1,21 +1,21 @@
-import { createContext } from "react"
+import { createContext, type Dispatch, type SetStateAction } from "react"
 
 
  type cantidadesType = {
     [producto: string] : number
  }
-type cantidadContextType = {
-    cantidadesInicio: cantidadesType
-    setCantidadesInicio: (prodcuto: string, cantidad: number) => void  
-    cantidadesCierre: cantidadesType
-    setCantidadesCierre: (producto: string, cantidad: number) => void
-}
+type CantidadesContextType = {
+  cantidadesInicio: cantidadesType;
+   setCantidadesInicio: Dispatch<SetStateAction<cantidadesType>>;
+  cantidadesCierre: cantidadesType;
+  setCantidadesCierre: Dispatch<SetStateAction<cantidadesType>>;
+};
 
 
-export const CantidadesContext = createContext<cantidadContextType>({
-    cantidadesInicio: {},
-    setCantidadesInicio: () => {},
-    cantidadesCierre: {},
-    setCantidadesCierre: () => {}
-})
+export const CantidadesContext = createContext<CantidadesContextType>({
+  cantidadesInicio: {},
+  setCantidadesInicio: () => {},
+  cantidadesCierre: {},
+  setCantidadesCierre: () => {},
+});
 //HOLA

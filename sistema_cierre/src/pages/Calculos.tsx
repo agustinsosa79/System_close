@@ -1,15 +1,17 @@
 import { useContext, useState } from "react"
 import { PreciosContext } from "../context/precios_context/preciosContext"
 import { CantidadesContext } from "../context/cantidad_context/cantidadContext"
-import productos from "../types/helados.types"
+import { useHeladosFecth } from "../hooks/useFetchIce"
 
 
 
 export const Calculos = () => {
      const { cantidadesInicio, cantidadesCierre } = useContext(CantidadesContext)
     const {precios} = useContext(PreciosContext)
+    const { productos }  = useHeladosFecth()
 
     const[resultado, setResultado] = useState<{
+        id:string
         producto: string,
         inicio: number
         cierre: number 
@@ -26,6 +28,7 @@ export const Calculos = () => {
             const vendidos = inicio - cierre
             const total = vendidos * precio
             return {
+                id: p._id,
                 producto: p.label,
                 inicio,
                 cierre,
@@ -45,10 +48,14 @@ export const Calculos = () => {
         /*El usuario Puede Calcular el cierre con solo presionar el boton */
         <button onClick={Calcular}>Calcular Total</button>
         {resultado.map((r) => (
-            <p key={r.producto}>
-                {r.producto}---
-                {r.vendidos}----
-                {r.total}
+            <p key={r.id} className="!p-10">
+                <p>Producto:{r.producto}</p>
+                <p>
+                    inicio: {r.inicio}
+                </p>
+                <p>Cierre: {r.cierre}</p>
+                <p>Vendidos:{r.vendidos}</p>
+                <p>Total:{r.total}</p>
             </p>
         ))}
         <h3>Total:{TotalGeneral}</h3>

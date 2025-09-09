@@ -1,29 +1,28 @@
-import { useState, type ReactNode } from "react";
+import { useState, type ReactNode} from "react";
 import { CantidadesContext } from "./cantidadContext";
 
-type props = {
-    children: ReactNode
-}
-
+// Tipos
 type cantidadesType = {
-    [producto: string] : number
- }
+  [producto: string]: number;
+};
 
-export const CantidadesProvider = ({children}: props) => {
-    const [cantidadesInicio, setCantidadesState] = useState<cantidadesType>({})
-    const [cantidadesCierre, setCantidadesCierreState] = useState<cantidadesType>({})
+// Provider
+type Props = { children: ReactNode };
 
-    const  setCantidadesInicio = (producto: string, cantidad: number) => {
-        setCantidadesState(prev => ({...prev,  [producto]: cantidad}))
-    }
+export const CantidadesProvider = ({ children }: Props) => {
+  const [cantidadesInicio, setCantidadesInicio] = useState<cantidadesType>({});
+  const [cantidadesCierre, setCantidadesCierre] = useState<cantidadesType>({});
 
-    const setCantidadesCierre = (producto:string, cantidad: number) => {
-        setCantidadesCierreState(prev => ({...prev, [producto]: cantidad}))
-    }
-
-    return (
-        <CantidadesContext.Provider value={{cantidadesInicio, setCantidadesInicio, cantidadesCierre, setCantidadesCierre}} >
-            {children}
-        </CantidadesContext.Provider>
-    )
-}
+  return (
+    <CantidadesContext.Provider
+      value={{
+        cantidadesInicio,
+        setCantidadesInicio,  
+        cantidadesCierre,
+        setCantidadesCierre 
+      }}
+    >
+      {children}
+    </CantidadesContext.Provider>
+  );
+};

@@ -8,11 +8,13 @@ type preciosType = {
 type preciosContextType = {
     precios: preciosType
     setPrecios: (producto: string, precio: number) => void
+    setPreciosTotal: (nuevoState: preciosType) => void
 }
 
 
 
 export const PreciosContext = createContext<preciosContextType>({
     precios: {},
-    setPrecios: () => {}
+    setPrecios: () => {},
+    setPreciosTotal: () => {}
 })
