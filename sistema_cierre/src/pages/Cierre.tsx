@@ -21,16 +21,16 @@
         }
         
         return(
-            <>
+            <div className="grid grid-cols-4">
             <div>
                 {productos.map((p) => (
                     <ProductoForm key={p._id} productoKey={p.key} label={p.label} tipo="cantidad" onGuardar={guardarCierre} />
                 ))}
+            </div>
                 <h3>Cantidades del Cierre</h3>
                 {Object.entries(cantidadesCierre).map(([producto, cantidad]) => (
                     <p key={producto}>{producto}:{cantidad}</p>
                 ))}
             </div>
-            </>
         )
     }
