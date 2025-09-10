@@ -1,1 +1,17 @@
-@import "tailwindcss"
+@import "tailwindcss";
+
+
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  width: 100vh;
+  background-color:  #1a1a1d;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
